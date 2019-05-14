@@ -2,7 +2,7 @@ package com.qhit.goodsInfo.pojo;
 
 
 /** 
-* Created by GeneratorCode on 2019/05/08
+* Created by GeneratorCode on 2018/05/15
 */ 
 
 public class GoodsInfo { 
