@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.qhit.goodsInfo.dao.IGoodsInfoDao"> 
+	<!-- 自定义结果集 --> 
+	<resultMap id="BaseResultMap" type="com.qhit.goodsInfo.pojo.GoodsInfo"> 
+		<id property="gid" column="gid" javaType="java.lang.Integer"></id> 
+		<result property="gname" column="gname" javaType="java.lang.String"></result> 
+		<result property="marketprice" column="marketprice" javaType="java.lang.Double"></result> 
+		<result property="shopprice" column="shopprice" javaType="java.lang.Double"></result> 
+		<result property="image" column="image" javaType="java.lang.String"></result> 
+		<result property="gdesc" column="gdesc" javaType="java.lang.String"></result> 
+		<result property="gdate" column="gdate" javaType="java.lang.String"></result> 
+		<result property="cid" column="cid" javaType="java.lang.Integer"></result> 
+		<result property="stocknumber" column="stocknumber" javaType="java.lang.Integer"></result> 
+		<result property="salenumber" column="salenumber" javaType="java.lang.Integer"></result> 
+		<result property="shopid" column="shopid" javaType="java.lang.Integer"></result> 
+	</resultMap> 
+
+	<!-- 在各种标签中，id属性必须与接口中的方法名一样，id的值必须是唯一的，parameterType指查询时使用的参数类型， 
+	resultType属性指明查询返回的结果集类型    --> 
+ 
+	<sql id="Base_Column_List" > 
+		gid,gname,marketprice,shopprice,image,gdesc,gdate,cid,stocknumber,salenumber,shopid 
+	</sql> 
+	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where gid = #{gid} 
+	</select> 
+	<delete id="delete" parameterType="java.lang.Integer" > 
+		delete from goods_info 
+		where gid = #{gid} 
+	</delete> 
+	<insert id="insert" parameterType="com.qhit.goodsInfo.pojo.GoodsInfo" > 
+		insert into goods_info(gname,marketprice,shopprice,image,gdesc,gdate,cid,stocknumber,salenumber,shopid) 
+		values (#{gname},#{marketprice},#{shopprice},#{image},#{gdesc},#{gdate},#{cid},#{stocknumber},#{salenumber},#{shopid}) 
+	</insert> 
+	<update id="updateSelective" parameterType="com.qhit.goodsInfo.pojo.GoodsInfo" > 
+		update goods_info 
+		<set > 
+			<if test="gname != null and gname!='' " > 
+				gname = #{gname}, 
+			</if> 
+			<if test="marketprice != null and marketprice!='' " > 
+				marketprice = #{marketprice}, 
+			</if> 
+			<if test="shopprice != null and shopprice!='' " > 
+				shopprice = #{shopprice}, 
+			</if> 
+			<if test="image != null and image!='' " > 
+				image = #{image}, 
+			</if> 
+			<if test="gdesc != null and gdesc!='' " > 
+				gdesc = #{gdesc}, 
+			</if> 
+			<if test="gdate != null and gdate!='' " > 
+				gdate = #{gdate}, 
+			</if> 
+			<if test="cid != null and cid!='' " > 
+				cid = #{cid}, 
+			</if> 
+			<if test="stocknumber != null and stocknumber!='' " > 
+				stocknumber = #{stocknumber}, 
+			</if> 
+			<if test="salenumber != null and salenumber!='' " > 
+				salenumber = #{salenumber}, 
+			</if> 
+			<if test="shopid != null and shopid!='' " > 
+				shopid = #{shopid}, 
+			</if> 
+		</set> 
+		where gid = #{gid} 
+	</update> 
+	<update id="update" parameterType="com.qhit.goodsInfo.pojo.GoodsInfo" > 
+		update goods_info 
+		set  gname = #{gname}, marketprice = #{marketprice}, shopprice = #{shopprice}, image = #{image}, gdesc = #{gdesc}, gdate = #{gdate}, cid = #{cid}, stocknumber = #{stocknumber}, salenumber = #{salenumber}, shopid = #{shopid} 
+		where gid = #{gid} 
+	</update> 
+	<select id="findAll" resultMap="BaseResultMap" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+	</select> 
+	<select id="findByGname" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where gname = #{gname} 
+	</select> 
+	<select id="findByMarketprice" resultMap="BaseResultMap" parameterType="java.lang.Double" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where marketprice = #{marketprice} 
+	</select> 
+	<select id="findByShopprice" resultMap="BaseResultMap" parameterType="java.lang.Double" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where shopprice = #{shopprice} 
+	</select> 
+	<select id="findByImage" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where image = #{image} 
+	</select> 
+	<select id="findByGdesc" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where gdesc = #{gdesc} 
+	</select> 
+	<select id="findByGdate" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where gdate = #{gdate} 
+	</select> 
+	<select id="findByCid" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where cid = #{cid} 
+	</select> 
+	<select id="findByStocknumber" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where stocknumber = #{stocknumber} 
+	</select> 
+	<select id="findBySalenumber" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where salenumber = #{salenumber} 
+	</select> 
+	<select id="findByShopid" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from goods_info 
+		where shopid = #{shopid} 
+	</select> 
+	<delete id="deleteBatch" parameterType="java.util.Arrays"> 
+		delete from goods_info where gid in 
+		<foreach collection="array" item="id" open="(" close=")" separator=","> 
+			#{id} 
+		</foreach> 
+	</delete> 
+	<select id="search" parameterType="com.qhit.goodsInfo.pojo.GoodsInfo" resultMap="BaseResultMap"> 
+		select * from  goods_info 
+		<where > 
+			<if test="gname != null and gname!='' " > 
+				 and gname = #{gname} 
+			</if> 
+			<if test="marketprice != null and marketprice!='' " > 
+				 and marketprice = #{marketprice} 
+			</if> 
+			<if test="shopprice != null and shopprice!='' " > 
+				 and shopprice = #{shopprice} 
+			</if> 
+			<if test="image != null and image!='' " > 
+				 and image = #{image} 
+			</if> 
+			<if test="gdesc != null and gdesc!='' " > 
+				 and gdesc = #{gdesc} 
+			</if> 
+			<if test="gdate != null and gdate!='' " > 
+				 and gdate = #{gdate} 
+			</if> 
+			<if test="cid != null and cid!='' " > 
+				 and cid = #{cid} 
+			</if> 
+			<if test="stocknumber != null and stocknumber!='' " > 
+				 and stocknumber = #{stocknumber} 
+			</if> 
+			<if test="salenumber != null and salenumber!='' " > 
+				 and salenumber = #{salenumber} 
+			</if> 
+			<if test="shopid != null and shopid!='' " > 
+				 and shopid = #{shopid} 
+			</if> 
+		</where> 
+	</select> 
+</mapper> 
